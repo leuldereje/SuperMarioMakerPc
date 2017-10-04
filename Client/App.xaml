@@ -1,0 +1,315 @@
+﻿<Application x:Class="Client.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="Views/LauncherWindow.xaml">
+  <Application.Resources>
+
+    <!-- colors -->
+    <Color x:Key="MarioMakerYellow">#FFDB00</Color>
+    <Color x:Key="MarioMakerRed">#D6021D</Color>
+    <Color x:Key="MarioMakerDarkRed">#6E1C1C</Color>
+    <Color x:Key="MarioMakerLightRed">#DB6060</Color>
+    <Color x:Key="MarioMakerLighterRed">#EF8A8A</Color>
+    <Color x:Key="MarioMakerOrange">#E2854D</Color>
+    <Color x:Key="MarioMakerLightBlue">#58BAD8</Color>
+    <Color x:Key="MarioMakerGreen">#30B30B</Color>
+    <Color x:Key="MarioMakerDarkAqua">#0FA683</Color>
+    <Color x:Key="MarioMakerDarkerAqua">#005865</Color>
+    <Color x:Key="MarioMakerDarkererAqua">#003946</Color>
+    <Color x:Key="MarioMakerLightYellow">#ECFB56</Color>
+    <Color x:Key="MarioMakerLighterYellow">#FAFFBD</Color>
+    <Color x:Key="MarioMakerEggWhite">#E1E1BB</Color>
+    <Color x:Key="MarioMakerLightGray">#A0A0AF</Color>
+    <Color x:Key="MarioMakerLighterGray">#E5E5EF</Color>
+    <Color x:Key="MarioMakerButtonTextColor">#EDDAFF</Color>
+
+    <!-- fonts -->
+    <FontFamily x:Key="MarioMakerFont">pack://application:,,,/Fonts/#Bou College</FontFamily>
+
+    <!-- styles -->
+    <Style x:Key="MarioMakerWindowStyle"
+           TargetType="{x:Type Window}">
+      <Setter Property="ResizeMode" Value="NoResize"/>
+      <Setter Property="AllowsTransparency" Value="True"/>
+      <Setter Property="BorderBrush">
+        <Setter.Value>
+          <SolidColorBrush Color="Black"/>
+        </Setter.Value>
+      </Setter>
+      <Setter Property="BorderThickness" Value="5"/>
+      <Setter Property="WindowStyle" Value="None"/>
+      <Setter Property="UseLayoutRounding" Value="True"/>
+      <Setter Property="WindowChrome.WindowChrome">
+        <Setter.Value>
+          <WindowChrome CornerRadius="0" 
+                        GlassFrameThickness="1" 
+                        UseAeroCaptionButtons="False"/>
+        </Setter.Value>
+      </Setter>
+      <Setter Property="Background">
+        <Setter.Value>
+          <SolidColorBrush Color="{StaticResource MarioMakerYellow}"/>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style x:Key="MarioMakerButtonStyle" 
+           TargetType="{x:Type Button}">
+      <Setter Property="FontSize" Value="24"/>
+      <Setter Property="TextElement.FontFamily" Value="{StaticResource MarioMakerFont}"/>
+      <Setter Property="MinHeight" Value="50"/>
+      <Setter Property="Cursor" Value="Hand"/>
+      <Setter Property="Effect">
+        <Setter.Value>
+          <DropShadowEffect BlurRadius="1" 
+                            ShadowDepth="4"/>
+        </Setter.Value>
+      </Setter>
+      <Setter Property="Foreground">
+        <Setter.Value>
+          <SolidColorBrush Color="{StaticResource MarioMakerButtonTextColor}"/>
+        </Setter.Value>
+      </Setter>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <Border x:Name="border"
+                    CornerRadius="8" 
+                    BorderThickness="1">
+
+              <Border.Background>
+                <SolidColorBrush Color="{StaticResource MarioMakerRed}"/>
+              </Border.Background>
+
+              <ContentPresenter HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"
+                                Margin="25,0"/>
+            </Border>
+
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="border" Property="Background">
+                  <Setter.Value>
+                    <SolidColorBrush Color="{StaticResource MarioMakerOrange}"/>
+                  </Setter.Value>
+                </Setter>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style x:Key="MarioMakerAlternateButtonStyle" 
+           TargetType="{x:Type Button}">
+      <Setter Property="FontSize" Value="24"/>
+      <Setter Property="TextElement.FontFamily" Value="{StaticResource MarioMakerFont}"/>
+      <Setter Property="MinHeight" Value="50"/>
+      <Setter Property="Cursor" Value="Hand"/>
+      <Setter Property="Effect">
+        <Setter.Value>
+          <DropShadowEffect BlurRadius="1" 
+                            ShadowDepth="4"/>
+        </Setter.Value>
+      </Setter>
+      <Setter Property="Foreground">
+        <Setter.Value>
+          <SolidColorBrush Color="{StaticResource MarioMakerDarkererAqua}"/>
+        </Setter.Value>
+      </Setter>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <Border x:Name="border"
+                    CornerRadius="8" 
+                    BorderThickness="1">
+
+              <Border.Background>
+                <SolidColorBrush Color="{StaticResource MarioMakerLightBlue}"/>
+              </Border.Background>
+
+              <ContentPresenter HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"
+                                Margin="25,0"/>
+            </Border>
+
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="border" Property="Background">
+                  <Setter.Value>
+                    <SolidColorBrush Color="{StaticResource MarioMakerLighterGray}"/>
+                  </Setter.Value>
+                </Setter>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style x:Key="MarioMakerSmallButtonStyle"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource MarioMakerButtonStyle}">
+      <Setter Property="Width" Value="55"/>
+      <Setter Property="Height" Value="45"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <Border x:Name="border"
+                    CornerRadius="8" 
+                    BorderThickness="1">
+
+              <Border.Background>
+                <SolidColorBrush Color="{StaticResource MarioMakerRed}"/>
+              </Border.Background>
+
+              <ContentPresenter HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"/>
+            </Border>
+
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="border" Property="Background">
+                  <Setter.Value>
+                    <SolidColorBrush Color="{StaticResource MarioMakerOrange}"/>
+                  </Setter.Value>
+                </Setter>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style x:Key="MarioMakerSmallAlternateButtonStyle"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource MarioMakerButtonStyle}">
+      <Setter Property="Width" Value="55"/>
+      <Setter Property="Height" Value="45"/>
+      <Setter Property="TextElement.Foreground">
+        <Setter.Value>
+          <SolidColorBrush Color="Black"/>
+        </Setter.Value>
+      </Setter>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <Border x:Name="border"
+                    CornerRadius="8" 
+                    BorderThickness="1">
+
+              <Border.Background>
+                <SolidColorBrush Color="{StaticResource MarioMakerLighterYellow}"/>
+              </Border.Background>
+
+              <ContentPresenter HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"/>
+            </Border>
+
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="border" Property="Background">
+                  <Setter.Value>
+                    <SolidColorBrush Color="White"/>
+                  </Setter.Value>
+                </Setter>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style x:Key="MarioMakerSmallAlternate2ButtonStyle"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource MarioMakerButtonStyle}">
+      <Setter Property="Width" Value="55"/>
+      <Setter Property="Height" Value="45"/>
+      <Setter Property="TextElement.Foreground">
+        <Setter.Value>
+          <SolidColorBrush Color="Black"/>
+        </Setter.Value>
+      </Setter>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <Border x:Name="border"
+                    CornerRadius="8" 
+                    BorderThickness="1">
+
+              <Border.Background>
+                <SolidColorBrush Color="{StaticResource MarioMakerLightBlue}"/>
+              </Border.Background>
+
+              <ContentPresenter HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"/>
+            </Border>
+
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="border" Property="Background">
+                  <Setter.Value>
+                    <SolidColorBrush Color="White"/>
+                  </Setter.Value>
+                </Setter>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style x:Key="MarioMakerSmallAlternate3ButtonStyle"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource MarioMakerButtonStyle}">
+      <Setter Property="Width" Value="55"/>
+      <Setter Property="Height" Value="45"/>
+      <Setter Property="TextElement.Foreground">
+        <Setter.Value>
+          <SolidColorBrush Color="Black"/>
+        </Setter.Value>
+      </Setter>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <Border x:Name="border"
+                    CornerRadius="8" 
+                    BorderThickness="1">
+
+              <Border.Background>
+                <SolidColorBrush Color="{StaticResource MarioMakerGreen}"/>
+              </Border.Background>
+
+              <ContentPresenter HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"/>
+            </Border>
+
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="border" Property="Background">
+                  <Setter.Value>
+                    <SolidColorBrush Color="White"/>
+                  </Setter.Value>
+                </Setter>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style x:Key="MarioMakerCloseButton"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource MarioMakerSmallButtonStyle}">
+      <Setter Property="Content" Value="✕"/>
+      <Setter Property="FontWeight" Value="ExtraBold"/>
+    </Style>
+
+    <Style x:Key="HighQualityImageStyle"
+           TargetType="{x:Type Image}">
+      <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
+      <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
+    </Style>
+
+  </Application.Resources>
+</Application>

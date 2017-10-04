@@ -1,0 +1,90 @@
+﻿<components:CustomWindow x:Class="Client.Views.LauncherWindow"
+                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                         xmlns:components="clr-namespace:Client.Components"
+                         xmlns:viewModels="clr-namespace:Client.ViewModels"
+                         xmlns:controls="clr-namespace:Client.Views.Controls"
+                         mc:Ignorable="d"
+                         Title="Super Mario Maker" 
+                         Height="480" 
+                         Width="800"
+                         Style="{StaticResource MarioMakerWindowStyle}"
+                         WindowStartupLocation="CenterScreen"
+                         Closed="WindowClosed">
+
+  <Window.DataContext>
+    <viewModels:LauncherViewModel/>
+  </Window.DataContext>
+
+  <Window.Resources>
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+  </Window.Resources>
+
+  <Grid>
+
+    <!-- title -->
+    <Image Source="/Images/title.png"
+           Style="{StaticResource HighQualityImageStyle}"
+           Margin="50,50,50,0"
+           HorizontalAlignment="Center"
+           VerticalAlignment="top" 
+           Stretch="Uniform" />
+
+    <StackPanel Orientation="Horizontal" 
+                Margin="10"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right">
+
+      <!-- update -->
+      <Button Content="⭳"
+              FontSize="34"
+              Command="{Binding UpdateCommand}"
+              Style="{StaticResource MarioMakerSmallAlternate3ButtonStyle}"
+              Margin="0,0,10,0"
+              Visibility="{Binding IsUpdateAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+      
+      <!-- settings -->
+      <Button Content="⚙"
+              Command="{Binding SettingsCommand}"
+              Style="{StaticResource MarioMakerSmallButtonStyle}"
+              Margin="0,0,10,0"/>
+
+      <!-- close -->
+      <controls:CloseButton/>
+
+    </StackPanel>
+
+    <!-- mario -->
+    <Image Source="/Images/mario_crop.png"
+           Style="{StaticResource HighQualityImageStyle}"
+           Margin="50,216,535,0"
+           Stretch="Uniform"/>
+
+    <StackPanel Orientation="Horizontal" 
+                Margin="0,0,50,70"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Height="120">
+
+      <!-- play -->
+      <Button Content="Play"
+              FontSize="38"
+              Command="{Binding PlayCommand}"
+              Style="{StaticResource MarioMakerButtonStyle}"
+              Margin="0,0,10,0"
+              Width="220"/>
+
+      <!-- courses -->
+      <Button Content="Courses"
+              FontSize="38"
+              Command="{Binding CoursesCommand}"
+              Style="{StaticResource MarioMakerButtonStyle}"
+              Width="220"/>
+
+    </StackPanel>
+
+  </Grid>
+
+</components:CustomWindow>

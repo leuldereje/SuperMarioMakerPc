@@ -1,0 +1,196 @@
+﻿<Window x:Class="Client.Views.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client.Views"
+        xmlns:viewModels="clr-namespace:Client.ViewModels"
+        mc:Ignorable="d"
+        Title="Settings" 
+        Height="240" 
+        Width="440"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+
+  <Window.DataContext>
+    <viewModels:SettingsViewModel/>
+  </Window.DataContext>
+
+  <Grid Margin="10">
+
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <!-- tabs -->
+    <TabControl Grid.Row="0">
+
+      <!-- emulator -->
+      <TabItem Header="Emulator">
+        <Grid Margin="10">
+
+          <Grid.Resources>
+            <Style TargetType="{x:Type CheckBox}">
+              <Setter Property="Margin" Value="0,0,0,10"/>
+            </Style>
+            <Style TargetType="{x:Type TextBlock}">
+              <Setter Property="VerticalAlignment" Value="Center"/>
+              <Setter Property="HorizontalAlignment" Value="Right"/>
+            </Style>
+            <Style TargetType="{x:Type TextBox}">
+              <Setter Property="Margin" Value="10,0"/>
+              <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="{x:Type Button}">
+              <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+          </Grid.Resources>
+
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+          </Grid.RowDefinitions>
+
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="25"/>
+          </Grid.ColumnDefinitions>
+
+          <!-- launch in fullscreen -->
+          <CheckBox Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Content="Launch in fullscreen"
+                    IsChecked="{Binding LaunchInFullscreen}"/>
+
+          <!-- game directory -->
+          <TextBlock Grid.Row="1"
+                     Grid.Column="0"
+                     Text="Game:"/>
+
+          <TextBox Grid.Row="1"
+                   Grid.Column="1"
+                   Text="{Binding FilePathGame}"/>
+
+          <Button Grid.Row="1"
+                  Grid.Column="2"
+                  Content="..."
+                  Command="{Binding BrowseGamePathCommand}"/>
+
+          <!-- emulator directory -->
+          <TextBlock Grid.Row="2"
+                     Grid.Column="0"
+                     Text="Emulator:"/>
+
+          <TextBox Grid.Row="2"
+                   Grid.Column="1"
+                   Text="{Binding FilePathEmulator}"/>
+
+          <Button Grid.Row="2"
+                  Grid.Column="2"
+                  Content="..."
+                  Command="{Binding BrowseEmulatorPathCommand}"/>
+
+          <!-- course directory -->
+          <TextBlock Grid.Row="3"
+                     Grid.Column="0"
+                     Text="Courses:"/>
+
+          <TextBox Grid.Row="3"
+                   Grid.Column="1"
+                   Text="{Binding DirectoryPathCourses}"/>
+
+          <Button Grid.Row="3"
+                  Grid.Column="2"
+                  Content="..."
+                  Command="{Binding BrowseCoursesPathCommand}"/>
+
+        </Grid>
+      </TabItem>
+
+      <!-- system -->
+      <TabItem Header="System">
+        <Grid Margin="10"
+              VerticalAlignment="Center">
+
+          <Grid.Resources>
+            <Style TargetType="{x:Type Button}">
+              <Setter Property="Margin" Value="5"/>
+            </Style>
+          </Grid.Resources>
+
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+          </Grid.RowDefinitions>
+
+          <Button Grid.Row="0"
+                  Height="30"
+                  Content="Restore file type associations"
+                  Command="{Binding RestoreFileAssociationsCommand}"/>
+
+          <Button Grid.Row="1"
+                  Height="30"
+                  Content="Clear file type associations"
+                  Command="{Binding ClearFileAssociationsCommand}"/>
+
+        </Grid>
+      </TabItem>
+
+    </TabControl>
+
+    <!-- version/buttons -->
+    <Grid Grid.Row="1"
+          Margin="0,10,0,0"
+          Height="25"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="80"/>
+        <ColumnDefinition Width="80"/>
+      </Grid.ColumnDefinitions>
+
+      <!-- version -->
+      <TextBlock Grid.Column="0"
+                 Text="{Binding Version}"
+                 FontSize="10"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Bottom"
+                 Cursor="Hand">
+        <TextBlock.Style>
+          <Style TargetType="{x:Type TextBlock}">
+            <Style.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="Black"/>
+              </Trigger>
+              <Trigger Property="IsMouseOver" Value="False">
+                <Setter Property="Foreground" Value="#AF000000"/>
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </TextBlock.Style>
+      </TextBlock>
+
+      <!-- save -->
+      <Button Grid.Column="1"
+              Margin="0,0,10,0"
+              Content="Save"
+              Command="{Binding SaveCommand}"/>
+
+      <!-- cancel -->
+      <Button Grid.Column="2"
+              Content="Cancel"
+              Command="{Binding CancelCommand}"/>
+
+    </Grid>
+
+  </Grid>
+
+</Window>

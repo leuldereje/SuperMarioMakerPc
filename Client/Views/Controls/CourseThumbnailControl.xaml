@@ -1,0 +1,89 @@
+﻿<Button x:Class="Client.Views.Controls.CourseThumbnailControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Click="ButtonClick">
+
+  <Button.RenderTransform>
+    <ScaleTransform ScaleX="1.0"
+                    ScaleY="1.0"
+                    CenterX="0"
+                    CenterY="0"/>
+  </Button.RenderTransform>
+
+  <Button.Style>
+    <Style TargetType="{x:Type Button}">
+      <Setter Property="Cursor" Value="Hand"/>
+      <Setter Property="FontSize" Value="24"/>
+      <Setter Property="TextElement.FontFamily" Value="{StaticResource MarioMakerFont}"/>
+      <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+      <Setter Property="Effect">
+        <Setter.Value>
+          <DropShadowEffect BlurRadius="1" 
+                            ShadowDepth="4"/>
+        </Setter.Value>
+      </Setter>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <Border x:Name="border"
+                    CornerRadius="8" 
+                    BorderThickness="1">
+
+              <Border.Background>
+                <SolidColorBrush Color="{StaticResource MarioMakerLightGray}"/>
+              </Border.Background>
+
+              <ContentPresenter HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Stretch"/>
+            </Border>
+
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="border" Property="Background">
+                  <Setter.Value>
+                    <SolidColorBrush Color="White"/>
+                  </Setter.Value>
+                </Setter>
+              </Trigger>
+            </ControlTemplate.Triggers>
+
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+  </Button.Style>
+  
+  <Grid Margin="15">
+
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <!-- thumbnail -->
+    <Image Grid.Row="0"
+           Source="{Binding Thumbnail}"
+           Style="{StaticResource HighQualityImageStyle}"
+           Width="224"
+           Height="168"
+           Stretch="Uniform"/>
+
+    <Border Grid.Row="1"
+            Margin="0,10,0,0"
+            CornerRadius="8">
+      
+      <Border.Background>
+        <SolidColorBrush Color="{StaticResource MarioMakerLighterGray}"/>
+      </Border.Background>
+      
+      <!-- title -->
+      <TextBlock Margin="15" 
+                 Text="{Binding Title}"
+                 FontSize="20"
+                 TextTrimming="CharacterEllipsis"/>
+    </Border>
+    
+  </Grid>
+  
+</Button>
