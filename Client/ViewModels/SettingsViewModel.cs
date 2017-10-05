@@ -2,10 +2,10 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Forms;
-using CommonLib.Components;
-using CommonLib.Utils;
 using Client.Extensions;
 using Client.Properties;
+using CommonLib.Components;
+using CommonLib.Utils;
 using MessageBox = System.Windows.MessageBox;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 
@@ -21,7 +21,7 @@ namespace Client.ViewModels {
       if (UiUtils.IsInDesignMode()) {
         return;
       }
-      
+
       LoadVersion();
       LoadSettings();
     }
@@ -34,7 +34,7 @@ namespace Client.ViewModels {
         OnPropertyChanged();
       }
     }
-    
+
     public bool LaunchInFullscreen {
       get => _launchInFullscreen;
       set {
@@ -81,7 +81,11 @@ namespace Client.ViewModels {
     }
 
     public Command CancelCommand {
-      get { return BuildCommand(x => { /* empty */ }); }
+      get {
+        return BuildCommand(x => {
+          /* empty */
+        });
+      }
     }
 
     public Command RestoreFileAssociationsCommand {
@@ -109,8 +113,8 @@ namespace Client.ViewModels {
       get {
         return BuildCommand(x => {
           var initDir = string.IsNullOrWhiteSpace(FilePathGame)
-            ? Path.GetDirectoryName(FilePathGame) 
-            : Path.GetFullPath(FilePathGame);
+            ? @"C:\"
+            : Path.GetDirectoryName(FilePathGame);
 
           var dialog = new OpenFileDialog {
             Multiselect = false,
@@ -138,9 +142,9 @@ namespace Client.ViewModels {
       get {
         return BuildCommand(x => {
           var initDir = string.IsNullOrWhiteSpace(FilePathEmulator)
-            ? Path.GetDirectoryName(FilePathEmulator) 
-            : Path.GetFullPath(FilePathEmulator);
-          
+            ? @"C:\"
+            : Path.GetDirectoryName(FilePathEmulator);
+
           var dialog = new OpenFileDialog {
             Multiselect = false,
             DefaultExt = ".exe",
@@ -166,7 +170,9 @@ namespace Client.ViewModels {
     public Command BrowseCoursesPathCommand {
       get {
         return BuildCommand(x => {
-          var initDir = Path.GetFullPath(DirectoryPathCourses);
+          var initDir = string.IsNullOrWhiteSpace(DirectoryPathCourses)
+            ? @"C:\"
+            : Path.GetFullPath(DirectoryPathCourses);
 
           var dialog = new FolderBrowserDialog {
             Description = "Browse for the courses directory:",
@@ -195,7 +201,7 @@ namespace Client.ViewModels {
 
       // we only want to show the major/minor digits
       ver = ver.Substring(0, ver.Length - 4);
-      
+
       Version = $"v{ver}";
     }
 

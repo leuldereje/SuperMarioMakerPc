@@ -13,12 +13,14 @@ namespace Client.Extensions {
 
       var dialogResult = dialog.ShowDialog();
 
+      if (dialogResult != true) {
+        return null;
+      }
+
       Settings.Default.LastDialogPath = Path.GetDirectoryName(dialog.FileName);
       Settings.Default.Save();
 
-      return dialogResult == true
-        ? dialog.FileName
-        : null;
+      return dialog.FileName;
     }
 
     public static string ShowCustom(this OpenFileDialog dialog, string initialDirectory = null) {
@@ -28,12 +30,14 @@ namespace Client.Extensions {
 
       var dialogResult = dialog.ShowDialog();
 
+      if (dialogResult != true) {
+        return null;
+      }
+
       Settings.Default.LastDialogPath = Path.GetDirectoryName(dialog.FileName);
       Settings.Default.Save();
 
-      return dialogResult == true
-        ? dialog.FileName
-        : null;
+      return dialog.FileName;
     }
   }
 }
