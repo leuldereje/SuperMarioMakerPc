@@ -78,19 +78,16 @@ namespace Client.ViewModels {
             AddExtension = true,
             DefaultExt = ".jpg",
             Filter = "Image Files|*.bmp;*.jpg;*.jpeg;*.png;*.gif|All Files (*.*)|*.*",
-            InitialDirectory = Settings.Default.LastDialogPath,
             Title = "Choose a thumbnail:"
           };
+          
+          var openFilePath = dialog.ShowCustom(Settings.Default.LastDialogPath);
 
-          if (dialog.ShowDialog() != true) {
+          if (string.IsNullOrWhiteSpace(openFilePath)) {
             return;
           }
 
-          if (string.IsNullOrWhiteSpace(dialog.FileName)) {
-            return;
-          }
-
-          Course.SetThumbnail(dialog.FileName);
+          Course.SetThumbnail(openFilePath);
         });
       }
     }
